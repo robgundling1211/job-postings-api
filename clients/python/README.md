@@ -74,9 +74,3 @@ Public job postings on employers' own career sites, read from the site or the ap
 do not copy other job boards. Questions: data@veritahire.com
 
 This repository holds examples and documentation only (MIT licence). The API itself is a hosted service.
-
-## Client libraries
-
-Tiny clients with the same four calls (`search_jobs` / `searchJobs`, `job_status` / `jobStatus`, `get_job` / `getJob`,
-`feed`), retrying when the API reports it is busy. Source in `clients/python` and `clients/js`; publishing to PyPI and npm
-as `veritahire` is pending.

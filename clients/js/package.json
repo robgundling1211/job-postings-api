@@ -1,0 +1,13 @@
+{
+  "name": "veritahire",
+  "version": "0.1.0",
+  "description": "Job postings API client: live US jobs verified on employers' own career sites, still-open checks, full feed.",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": "./index.mjs",
+  "engines": { "node": ">=18" },
+  "keywords": ["jobs api", "job postings api", "job search api", "indeed api", "linkedin jobs api", "job data"],
+  "homepage": "https://veritahire.com/developers/",
+  "repository": { "type": "git", "url": "git+https://github.com/robgundling1211/job-postings-api.git", "directory": "clients/js" },
+  "license": "MIT"
+}
