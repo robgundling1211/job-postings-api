@@ -81,7 +81,8 @@ Tiny clients with the same four calls (`search_jobs` / `searchJobs`, `job_status
 `feed`), retrying when the API reports it is busy. Source in `clients/python` and `clients/js`.
 
 ```bash
-pip install veritahire
+pip install veritahire        # Python
+npm install veritahire        # JavaScript (Node 18+, browsers, Deno, Bun)
 ```
 
 ```python
@@ -89,4 +90,10 @@ from veritahire import search_jobs, job_status
 for job in search_jobs("registered nurse", "Austin, TX"):
     print(job["title"], job["employer"], job["apply_url"])
 print(job_status(url="https://careers.example.com/job/12345")["status"])
+```
+
+```javascript
+import { searchJobs, jobStatus } from "veritahire";
+const jobs = await searchJobs({ what: "electrician", where: "Las Vegas, NV" });
+console.log((await jobStatus({ url: "https://careers.example.com/job/12345" })).status);
 ```
