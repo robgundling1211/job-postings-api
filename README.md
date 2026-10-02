@@ -78,5 +78,15 @@ This repository holds examples and documentation only (MIT licence). The API its
 ## Client libraries
 
 Tiny clients with the same four calls (`search_jobs` / `searchJobs`, `job_status` / `jobStatus`, `get_job` / `getJob`,
-`feed`), retrying when the API reports it is busy. Source in `clients/python` and `clients/js`; publishing to PyPI and npm
-as `veritahire` is pending.
+`feed`), retrying when the API reports it is busy. Source in `clients/python` and `clients/js`.
+
+```bash
+pip install veritahire
+```
+
+```python
+from veritahire import search_jobs, job_status
+for job in search_jobs("registered nurse", "Austin, TX"):
+    print(job["title"], job["employer"], job["apply_url"])
+print(job_status(url="https://careers.example.com/job/12345")["status"])
+```
