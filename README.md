@@ -10,6 +10,7 @@ leaves the employer's site is marked closed within about 36 hours, and every rec
 - **One key** for the full feed: every live posting, cursor-paged, plus hiring velocity and employer profiles.
   Free trial key (2,000 records, 30 days): <https://veritahire.com/developers/>
 - **OpenAPI** for every endpoint: <https://veritahire.com/openapi.json>
+- **In Claude:** [VeritaHire Jobs in the Connectors Directory](https://claude.ai/directory/veritahire)
 - **MCP server** for AI agents: `https://veritahire.com/mcp` (registry: `com.veritahire/jobs`)
 
 ## Quickstart (no key)
