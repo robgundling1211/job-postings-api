@@ -1,6 +1,6 @@
 """veritahire - live US job postings, verified on employers' own career sites.
 
-    from veritahire import search_jobs, job_status, get_job, feed
+    from veritahire import search_jobs, job_status, get_job, feed, competitive_hiring_report
 
     for job in search_jobs("registered nurse", "Austin, TX"):
         print(job["title"], job["employer"], job["apply_url"])
@@ -10,12 +10,15 @@
     for row in feed(api_key="vh_...", state="CA", category="healthcare_clinical"):   # full feed, needs a key
         print(row["title"])
 
+    r = competitive_hiring_report(job_url="https://careers.example.org/job/12345")   # one healthcare role (no key)
+    print(r["market"], r["competitors"][:3])
+
 Docs and a free trial key: https://veritahire.com/developers/  OpenAPI: https://veritahire.com/openapi.json
 """
 import time
 import requests
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 BASE = "https://veritahire.com"
 _UA = "veritahire-python/" + __version__
 
@@ -24,12 +27,14 @@ class VeritaHireError(Exception):
     pass
 
 
-def _get(path, params=None, api_key=None, retries=2):
+def _get(path, params=None, api_key=None, retries=2, accept_202=False):
     headers = {"User-Agent": _UA}
     if api_key:
         headers["X-API-Key"] = api_key
     for attempt in range(retries + 1):
         r = requests.get(BASE + path, params=params, headers=headers, timeout=60)
+        if r.status_code == 202 and accept_202:
+            return r.json()
         if r.status_code == 503 and attempt < retries:          # busy: the API says so instead of returning zero
             time.sleep(int(r.json().get("retry_after_seconds", 30)))
             continue
@@ -70,3 +75,19 @@ def feed(api_key, limit=100, **filters):
         after = page.get("next_after")
         if not after:
             return
+
+
+def competitive_hiring_report(job_url=None, job_id=None, employer=None, title=None, city=None, state=None, wait_seconds=300):
+    """The Competitive Hiring Report summary for one US healthcare clinical posting (no key): how fast the same role closes
+    within 25 miles and how fast this employer usually closes it, the pay each competitor posts, who else is hiring it,
+    recent closes, and openings vs closings nearby over the last 4 weeks. Identify the posting by its careers-site URL,
+    a VeritaHire job id, or employer + title (+ city, state). A role not yet built answers "building"; this waits and asks
+    again for up to wait_seconds. Sample of the full report: https://veritahire.com/r/sample"""
+    p = {k: v for k, v in {"job_url": job_url, "job_id": job_id, "employer": employer, "title": title,
+                            "city": city, "state": state}.items() if v}
+    deadline = time.time() + wait_seconds
+    while True:
+        r = _get("/api/benchmark.php", p, accept_202=True)
+        if r.get("status") != "building" or time.time() >= deadline:
+            return r
+        time.sleep(int(r.get("retry_after_seconds", 90)))

@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "veritahire"
-version = "0.1.0"
-description = "Job postings API client: live US jobs verified on employers' own career sites, still-open checks, full feed."
+version = "0.2.0"
+description = "Job postings API client: live US jobs verified on employers' own career sites, still-open checks, full feed, and a competitive hiring report for one healthcare role."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.8"
 dependencies = ["requests>=2.20"]
-keywords = ["jobs api", "job postings api", "job search api", "indeed api", "linkedin jobs api", "job data"]
+keywords = ["jobs api", "job postings api", "job search api", "indeed api", "linkedin jobs api", "job data", "talent intelligence", "salary benchmarking", "time to hire"]
 classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Topic :: Internet :: WWW/HTTP"]
 
 [project.urls]

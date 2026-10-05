@@ -6,10 +6,12 @@ documentation is its partner program. **VeritaHire** reads employers' own career
 iCIMS, SmartRecruiters and more), so there is no board in between to close the door, and no stale copies: a job that
 leaves the employer's site is marked closed within about 36 hours, and every record says when it was last confirmed there.
 
-- **No key** to start: search live jobs, read a whole posting, check whether any posting URL is still open.
+- **No key** to start: search live jobs, read a whole posting, check whether any posting URL is still open, and get a
+  **Competitive Hiring Report** for one healthcare role.
 - **One key** for the full feed: every live posting, cursor-paged, plus hiring velocity and employer profiles.
   Free trial key (2,000 records, 30 days): <https://veritahire.com/developers/>
 - **OpenAPI** for every endpoint: <https://veritahire.com/openapi.json>
+- **In Claude:** [VeritaHire Jobs in the Connectors Directory](https://claude.ai/directory/veritahire)
 - **MCP server** for AI agents: `https://veritahire.com/mcp` (registry: `com.veritahire/jobs`)
 
 ## Quickstart (no key)
@@ -44,6 +46,29 @@ curl "https://veritahire.com/api/job-status.php?url=https://careers.example.com/
 # {"status": "open" | "closed" | "unknown", "last_confirmed_on_employer_site": "...", ...}
 ```
 
+## Competitive Hiring Report: why isn't this role filling? (no key)
+
+Talent intelligence for one open US healthcare clinical posting (nurses, therapists, technologists, pharmacists, aides):
+how fast the same role closes within 25 miles and how fast this employer usually closes it, the pay each competitor posts
+(salary benchmarking), who else is hiring it, the last roles like it to close, and whether more of these roles opened than
+closed nearby over the last 4 weeks.
+
+```bash
+curl "https://veritahire.com/api/benchmark.php?job_url=https://careers.example.org/job/12345"
+# or ?job_id=... or ?employer=...&title=...&city=...&state=...
+```
+
+HTTP 202 with `"status": "building"` means the report is being built: ask again after `retry_after_seconds`. The full
+report ([sample](https://veritahire.com/r/sample)) goes to the hiring manager by email through
+`POST /api/benchmark-claim.php` with their address; their click opens it. Send it only when they ask.
+
+## Job Openings Index (no key)
+
+A daily index of open US job postings measured from employers' own career sites, published the next morning
+(base 2026-09-04 = 100): <https://veritahire.com/job-openings-index/>. Full series as CSV:
+<https://veritahire.com/job-openings-index/veritahire-job-openings-index.csv>; latest figures as JSON:
+<https://veritahire.com/job-openings-index/latest.json>.
+
 ## The full feed (key)
 
 ```bash
@@ -74,3 +99,31 @@ Public job postings on employers' own career sites, read from the site or the ap
 do not copy other job boards. Questions: data@veritahire.com
 
 This repository holds examples and documentation only (MIT licence). The API itself is a hosted service.
+
+## Client libraries
+
+Tiny clients with the same five calls (`search_jobs` / `searchJobs`, `job_status` / `jobStatus`, `get_job` / `getJob`,
+`feed`, `competitive_hiring_report` / `competitiveHiringReport`), retrying when the API reports it is busy. Source in
+`clients/python` and `clients/js`.
+
+```bash
+pip install veritahire        # Python
+npm install veritahire        # JavaScript (Node 18+, browsers, Deno, Bun)
+```
+
+```python
+from veritahire import search_jobs, job_status
+for job in search_jobs("registered nurse", "Austin, TX"):
+    print(job["title"], job["employer"], job["apply_url"])
+print(job_status(url="https://careers.example.com/job/12345")["status"])
+
+from veritahire import competitive_hiring_report
+r = competitive_hiring_report(job_url="https://careers.example.org/job/12345")
+print(r["market"], r["competitors"][:3])
+```
+
+```javascript
+import { searchJobs, jobStatus } from "veritahire";
+const jobs = await searchJobs({ what: "electrician", where: "Las Vegas, NV" });
+console.log((await jobStatus({ url: "https://careers.example.com/job/12345" })).status);
+```
