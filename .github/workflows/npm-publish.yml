@@ -1,0 +1,29 @@
+# Publish the JavaScript client to npm when a GitHub release is published - npm "trusted publishing" (OIDC): no npm token
+# and no passkey prompt. npm trusts this exact repo + workflow + environment, configured on npmjs.com by the account owner
+# (package veritahire -> Settings -> Trusted Publisher). Same release also runs pypi-publish.yml: bump BOTH versions first.
+name: Publish JavaScript client to npm
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      id-token: write          # the OIDC token npm verifies - the only credential, minted per run
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+      - name: npm new enough for trusted publishing (11.5.1+)
+        run: npm install -g npm@latest
+      - name: Publish (skips a version npm already has)
+        working-directory: clients/js
+        run: |
+          V=$(node -p "require('./package.json').version")
+          if npm view "veritahire@$V" version >/dev/null 2>&1; then echo "veritahire@$V already on npm - nothing to do"; exit 0; fi
+          npm publish --access public
