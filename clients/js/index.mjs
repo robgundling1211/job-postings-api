@@ -1,5 +1,5 @@
 // veritahire - live US job postings, verified on employers' own career sites. Node 18+ / browsers / Deno / Bun.
-//   import { searchJobs, jobStatus, getJob, feed, competitiveHiringReport } from "veritahire";
+//   import { searchJobs, jobStatus, getJob, feed, competitiveHiringReport, hiringMarket } from "veritahire";
 // Docs and a free trial key: https://veritahire.com/developers/  OpenAPI: https://veritahire.com/openapi.json
 const BASE = "https://veritahire.com";
 
@@ -54,3 +54,7 @@ export async function competitiveHiringReport({ jobUrl, jobId, employer, title, 
     await new Promise(res => setTimeout(res, (r.retry_after_seconds ?? 90) * 1000));
   }
 }
+
+/** The hiring market for one US healthcare clinical occupation, nationally or in a state (no key): live postings, employers
+ *  hiring, posted pay range, experience and education asked, employment type and shift mix, and how fast the role closes. */
+export const hiringMarket = ({ occupation, state = "US" }) => get("/api/hiring-market.php", { occupation, state });

@@ -1,6 +1,6 @@
 {
   "name": "veritahire",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Job postings API client: live US jobs verified on employers' own career sites, still-open checks, full feed, and a competitive hiring report for one healthcare role.",
   "type": "module",
   "main": "index.mjs",

@@ -62,6 +62,16 @@ HTTP 202 with `"status": "building"` means the report is being built: ask again 
 report ([sample](https://veritahire.com/r/sample)) goes to the hiring manager by email through
 `POST /api/benchmark-claim.php` with their address; their click opens it. Send it only when they ask.
 
+### Hiring market for an occupation (no key)
+
+```bash
+curl "https://veritahire.com/api/hiring-market.php?occupation=registered+nurse&state=CA"
+```
+
+Live postings, employers hiring, posted pay range, experience and education asked, employment type and shift mix, and how
+fast the role closes, nationally or for one state. For employers' AI assistants, all of this is also an MCP server:
+`https://veritahire.com/mcp/employers` (VeritaHire Hiring Intelligence).
+
 ## Job Openings Index (no key)
 
 A daily index of open US job postings measured from employers' own career sites, published the next morning
@@ -102,8 +112,8 @@ This repository holds examples and documentation only (MIT licence). The API its
 
 ## Client libraries
 
-Tiny clients with the same five calls (`search_jobs` / `searchJobs`, `job_status` / `jobStatus`, `get_job` / `getJob`,
-`feed`, `competitive_hiring_report` / `competitiveHiringReport`), retrying when the API reports it is busy. Source in
+Tiny clients with the same six calls (`search_jobs` / `searchJobs`, `job_status` / `jobStatus`, `get_job` / `getJob`,
+`feed`, `competitive_hiring_report` / `competitiveHiringReport`, `hiring_market` / `hiringMarket`), retrying when the API reports it is busy. Source in
 `clients/python` and `clients/js`.
 
 ```bash

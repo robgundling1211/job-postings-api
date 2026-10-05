@@ -1,6 +1,6 @@
 """veritahire - live US job postings, verified on employers' own career sites.
 
-    from veritahire import search_jobs, job_status, get_job, feed, competitive_hiring_report
+    from veritahire import search_jobs, job_status, get_job, feed, competitive_hiring_report, hiring_market
 
     for job in search_jobs("registered nurse", "Austin, TX"):
         print(job["title"], job["employer"], job["apply_url"])
@@ -18,7 +18,7 @@ Docs and a free trial key: https://veritahire.com/developers/  OpenAPI: https://
 import time
 import requests
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 BASE = "https://veritahire.com"
 _UA = "veritahire-python/" + __version__
 
@@ -91,3 +91,10 @@ def competitive_hiring_report(job_url=None, job_id=None, employer=None, title=No
         if r.get("status") != "building" or time.time() >= deadline:
             return r
         time.sleep(int(r.get("retry_after_seconds", 90)))
+
+
+def hiring_market(occupation, state="US"):
+    """The hiring market for one US healthcare clinical occupation, nationally or in a state (no key): live postings, employers
+    hiring, posted pay range, experience and education asked, employment type and shift mix, and how fast the role closes.
+    occupation in plain words ("registered nurse", "pharmacy technician"); state as a code or name, or "US"."""
+    return _get("/api/hiring-market.php", {"occupation": occupation, "state": state})
