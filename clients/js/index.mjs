@@ -42,7 +42,7 @@ export async function* feed({ apiKey, limit = 100, ...filters }) {
   }
 }
 
-/** The Competitive Hiring Report summary for one US healthcare clinical posting (no key): how fast the same role closes
+/** The Competitive Hiring Report summary for one US healthcare, finance or IT posting (no key): how fast the same role closes
  *  within 25 miles and how fast this employer usually closes it, the pay each competitor posts, who else is hiring it,
  *  recent closes, and openings vs closings nearby over the last 4 weeks. A role not yet built answers "building"; this
  *  waits and asks again for up to waitSeconds. Sample of the full report: https://veritahire.com/r/sample */
@@ -55,6 +55,6 @@ export async function competitiveHiringReport({ jobUrl, jobId, employer, title, 
   }
 }
 
-/** The hiring market for one US healthcare clinical occupation, nationally or in a state (no key): live postings, employers
+/** The hiring market for one US healthcare, finance or IT occupation, nationally or in a state (no key): live postings, employers
  *  hiring, posted pay range, experience and education asked, employment type and shift mix, and how fast the role closes. */
 export const hiringMarket = ({ occupation, state = "US" }) => get("/api/hiring-market.php", { occupation, state });

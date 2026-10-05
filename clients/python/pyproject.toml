@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "veritahire"
-version = "0.3.0"
-description = "Job postings API client: live US jobs verified on employers' own career sites, still-open checks, full feed, and a competitive hiring report for one healthcare role."
+version = "0.3.1"
+description = "Job postings API client: live US jobs verified on employers' own career sites, still-open checks, full feed, and a competitive hiring report for one healthcare, finance or IT role."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.8"

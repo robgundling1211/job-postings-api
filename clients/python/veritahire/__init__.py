@@ -10,7 +10,7 @@
     for row in feed(api_key="vh_...", state="CA", category="healthcare_clinical"):   # full feed, needs a key
         print(row["title"])
 
-    r = competitive_hiring_report(job_url="https://careers.example.org/job/12345")   # one healthcare role (no key)
+    r = competitive_hiring_report(job_url="https://careers.example.org/job/12345")   # one healthcare, finance or IT role (no key)
     print(r["market"], r["competitors"][:3])
 
 Docs and a free trial key: https://veritahire.com/developers/  OpenAPI: https://veritahire.com/openapi.json
@@ -18,7 +18,7 @@ Docs and a free trial key: https://veritahire.com/developers/  OpenAPI: https://
 import time
 import requests
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 BASE = "https://veritahire.com"
 _UA = "veritahire-python/" + __version__
 
@@ -78,7 +78,7 @@ def feed(api_key, limit=100, **filters):
 
 
 def competitive_hiring_report(job_url=None, job_id=None, employer=None, title=None, city=None, state=None, wait_seconds=300):
-    """The Competitive Hiring Report summary for one US healthcare clinical posting (no key): how fast the same role closes
+    """The Competitive Hiring Report summary for one US healthcare, finance or IT posting (no key): how fast the same role closes
     within 25 miles and how fast this employer usually closes it, the pay each competitor posts, who else is hiring it,
     recent closes, and openings vs closings nearby over the last 4 weeks. Identify the posting by its careers-site URL,
     a VeritaHire job id, or employer + title (+ city, state). A role not yet built answers "building"; this waits and asks
@@ -94,7 +94,7 @@ def competitive_hiring_report(job_url=None, job_id=None, employer=None, title=No
 
 
 def hiring_market(occupation, state="US"):
-    """The hiring market for one US healthcare clinical occupation, nationally or in a state (no key): live postings, employers
+    """The hiring market for one US healthcare, finance or IT occupation, nationally or in a state (no key): live postings, employers
     hiring, posted pay range, experience and education asked, employment type and shift mix, and how fast the role closes.
     occupation in plain words ("registered nurse", "pharmacy technician"); state as a code or name, or "US"."""
     return _get("/api/hiring-market.php", {"occupation": occupation, "state": state})
