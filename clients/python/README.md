@@ -7,7 +7,7 @@ iCIMS, SmartRecruiters and more), so there is no board in between to close the d
 leaves the employer's site is marked closed within about 36 hours, and every record says when it was last confirmed there.
 
 - **No key** to start: search live jobs, read a whole posting, check whether any posting URL is still open, and get a
-  **Competitive Hiring Report** for one healthcare, finance or IT role.
+  **Competitive Hiring Report** for one healthcare, finance, IT, engineering, science, HR, legal or marketing role.
 - **One key** for the full feed: every live posting, cursor-paged, plus hiring velocity and employer profiles.
   Free trial key (2,000 records, 30 days): <https://veritahire.com/developers/>
 - **OpenAPI** for every endpoint: <https://veritahire.com/openapi.json>
@@ -48,7 +48,7 @@ curl "https://veritahire.com/api/job-status.php?url=https://careers.example.com/
 
 ## Competitive Hiring Report: why isn't this role filling? (no key)
 
-Talent intelligence for one open US healthcare, finance or IT posting (nurses, therapists, pharmacists, accountants, financial analysts, bankers, software engineers, data and security roles):
+Talent intelligence for one open US healthcare, finance, IT, engineering, science, HR, legal or marketing posting (nurses, therapists, pharmacists, accountants, financial analysts, bankers, software engineers, data and security roles, engineers, scientists, attorneys, recruiters and marketers):
 how fast the same role closes within 25 miles and how fast this employer usually closes it, the pay each competitor posts
 (salary benchmarking), who else is hiring it, the last roles like it to close, and whether more of these roles opened than
 closed nearby over the last 4 weeks.
