@@ -2,17 +2,20 @@
 
 Looking for an **Indeed API**, a **LinkedIn jobs API** or a **Glassdoor API** to search job postings? LinkedIn's talent APIs
 are for posting jobs and taking applications through partner applicant-tracking systems, and Indeed's developer
-documentation is its partner program. **VeritaHire** reads employers' own career sites directly (Workday, Greenhouse,
-iCIMS, SmartRecruiters and more), so there is no board in between to close the door, and no stale copies: a job that
+documentation is its partner program. **VeritaHire** reads **2.5 million+ live US jobs straight from the career sites of
+19,000+ employers** (Workday, Greenhouse, iCIMS, SmartRecruiters and more), so there is no board in between to close the door, and no stale copies: a job that
 leaves the employer's site is marked closed within about 36 hours, and every record says when it was last confirmed there.
 
 - **No key** to start: search live jobs, read a whole posting, check whether any posting URL is still open, and get a
   **Competitive Hiring Report** for one healthcare, finance, IT, engineering, science, HR, legal or marketing role.
 - **One key** for the full feed: every live posting, cursor-paged, plus hiring velocity and employer profiles.
-  Free trial key (2,000 records, 30 days): <https://veritahire.com/developers/>
+  Free trial: 2,000 credits, no card, then $3.95 per 1,000 jobs or monthly plans: <https://veritahire.com/verified-jobs-feed/>
 - **OpenAPI** for every endpoint: <https://veritahire.com/openapi.json>
 - **In Claude:** [VeritaHire Jobs in the Connectors Directory](https://claude.ai/directory/veritahire)
 - **MCP server** for AI agents: `https://veritahire.com/mcp` (registry: `com.veritahire/jobs`)
+- **Claude Code plugin:** [jobhunt](https://github.com/robgundling1211/jobhunt): your AI finds live jobs that fit your résumé
+- **career-ops plugin:** [career-ops-plugin-veritahire](https://github.com/robgundling1211/career-ops-plugin-veritahire)
+- **Daily data:** [us-job-openings-index](https://github.com/robgundling1211/us-job-openings-index), the US Job Openings Index as a CSV, updated every morning
 
 ## Quickstart (no key)
 
@@ -77,7 +80,8 @@ fast the role closes, nationally or for one state. For employers' AI assistants,
 A daily index of open US job postings measured from employers' own career sites, published the next morning
 (base 2026-09-04 = 100): <https://veritahire.com/job-openings-index/>. Full series as CSV:
 <https://veritahire.com/job-openings-index/veritahire-job-openings-index.csv>; latest figures as JSON:
-<https://veritahire.com/job-openings-index/latest.json>.
+<https://veritahire.com/job-openings-index/latest.json>. Also on GitHub, updated daily:
+[us-job-openings-index](https://github.com/robgundling1211/us-job-openings-index).
 
 ## The full feed (key)
 
