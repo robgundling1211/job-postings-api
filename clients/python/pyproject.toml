@@ -15,5 +15,5 @@ classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :
 
 [project.urls]
 Homepage = "https://veritahire.com/developers/"
-Source = "https://github.com/robgundling1211/job-postings-api"
+Source = "https://github.com/veritahire/job-postings-api"
 Documentation = "https://veritahire.com/openapi.json"

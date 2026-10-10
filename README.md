@@ -13,9 +13,9 @@ leaves the employer's site is marked closed within about 36 hours, and every rec
 - **OpenAPI** for every endpoint: <https://veritahire.com/openapi.json>
 - **In Claude:** [VeritaHire Jobs in the Connectors Directory](https://claude.ai/directory/veritahire)
 - **MCP server** for AI agents: `https://veritahire.com/mcp` (registry: `com.veritahire/jobs`)
-- **Claude Code plugin:** [jobhunt](https://github.com/robgundling1211/jobhunt): your AI finds live jobs that fit your résumé
-- **career-ops plugin:** [career-ops-plugin-veritahire](https://github.com/robgundling1211/career-ops-plugin-veritahire)
-- **Daily data:** [us-job-openings-index](https://github.com/robgundling1211/us-job-openings-index), the US Job Openings Index as a CSV, updated every morning
+- **Claude Code plugin:** [jobhunt](https://github.com/veritahire/jobhunt): your AI finds live jobs that fit your résumé
+- **career-ops plugin:** [career-ops-plugin-veritahire](https://github.com/veritahire/career-ops-plugin-veritahire)
+- **Daily data:** [us-job-openings-index](https://github.com/veritahire/us-job-openings-index), the US Job Openings Index as a CSV, updated every morning
 
 ## Quickstart (no key)
 
@@ -81,7 +81,7 @@ A daily index of open US job postings measured from employers' own career sites,
 (base 2026-09-04 = 100): <https://veritahire.com/job-openings-index/>. Full series as CSV:
 <https://veritahire.com/job-openings-index/veritahire-job-openings-index.csv>; latest figures as JSON:
 <https://veritahire.com/job-openings-index/latest.json>. Also on GitHub, updated daily:
-[us-job-openings-index](https://github.com/robgundling1211/us-job-openings-index).
+[us-job-openings-index](https://github.com/veritahire/us-job-openings-index).
 
 ## The full feed (key)
 

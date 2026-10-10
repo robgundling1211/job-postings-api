@@ -8,6 +8,6 @@
   "engines": { "node": ">=18" },
   "keywords": ["jobs api", "job postings api", "job search api", "indeed api", "linkedin jobs api", "job data", "talent intelligence", "salary benchmarking", "time to hire"],
   "homepage": "https://veritahire.com/developers/",
-  "repository": { "type": "git", "url": "git+https://github.com/robgundling1211/job-postings-api.git", "directory": "clients/js" },
+  "repository": { "type": "git", "url": "git+https://github.com/veritahire/job-postings-api.git", "directory": "clients/js" },
   "license": "MIT"
 }
